@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			{{ object.title }}
+		</div>
+  <div class="panel-body">
+		{{ object.body }}
+  </div>
+</div>
+
+<hr>
+<h3>Leave Your Comment: </h3>
+<div class="comment">
+	<form action="{% url 'create_comment' pk=object.id %}" method="post">
+		{% csrf_token %}
+		<textarea name="body"></textarea>
+		<input type="submit"/>
+
+	</form>
+	<div class="show_comments">
+		<h3>Show Comments:</h3>
+		{% for comment in object.comments.all %}
+			{{ comment.body }}
+			<hr>
+		{% endfor %}
+	</div>
+</div>
+{% endblock content %}

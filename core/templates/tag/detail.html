@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% for post in object.posts.all %}
+		<a href="{% url 'detail_post' post.id %}">
+			{{ post.title }}
+		</a>
+	{% endfor %}
+{% endblock %}
